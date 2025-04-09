@@ -1,23 +1,31 @@
 "use client";
-import { getInstruments } from "@/entities/instrument/api";
-import { Button, Container, Typography } from "@mui/material";
+import { Instrument } from "@/entities/instrument/model";
+import { fetchInstrumentsSafe } from "@/services/instrumentService";
+import {
+  Button,
+  Container,
+  List,
+  ListItem,
+  ListItemText,
+  Typography
+} from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import DashboardSkeleton from "./dashboardSkeleton";
 
 export default function Home() {
   const router = useRouter();
-  const [instruments, setInstruments] = useState([]);
+  const [instruments, setInstruments] = useState<Instrument[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await getInstruments();
-        setInstruments(data);
-      } catch (error) {
-        console.error("Error fetching instruments:", error);
-      }
+    async function load() {
+      setLoading(true);
+      const data = await fetchInstrumentsSafe();
+      setInstruments(data);
+      setLoading(false);
     }
-    fetchData();
+    load();
   }, []);
 
   return (
@@ -25,14 +33,22 @@ export default function Home() {
       <Typography variant="h3" gutterBottom>
         Dashboard
       </Typography>
-      {!!instruments.length ? (
-        <ul>
+
+      {loading ? (
+        <DashboardSkeleton />
+      ) : !!instruments.length ? (
+        <List
+          sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+        >
           {instruments.map((instrument) => (
-            <li key={instrument.id}>
-              {instrument.name} ({instrument.type})
-            </li>
+            <ListItem key={instrument.id}>
+              <ListItemText
+                primary={instrument.name}
+                secondary={instrument.type}
+              />
+            </ListItem>
           ))}
-        </ul>
+        </List>
       ) : (
         <Typography variant="body1">
           No instruments found. Start by adding a new one
