@@ -11,12 +11,16 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import DashboardSkeleton from "./dashboardSkeleton";
+
+import { useTranslations } from "next-intl";
+import DashboardSkeleton from "./DashboardSkeleton";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Home() {
   const router = useRouter();
   const [instruments, setInstruments] = useState<Instrument[]>([]);
   const [loading, setLoading] = useState(true);
+  const t = useTranslations("Dashboard");
 
   useEffect(() => {
     async function load() {
@@ -31,7 +35,7 @@ export default function Home() {
   return (
     <Container maxWidth="lg">
       <Typography variant="h3" gutterBottom>
-        Dashboard
+        {t("title")}
       </Typography>
 
       {loading ? (
@@ -54,6 +58,8 @@ export default function Home() {
           No instruments found. Start by adding a new one
         </Typography>
       )}
+
+      <LanguageSwitcher />
 
       <Button
         variant="contained"

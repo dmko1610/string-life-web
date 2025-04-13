@@ -1,4 +1,4 @@
-import { supabase } from "../../shared/lib/supabase";
+import { supabase } from "@/shared/lib/supabase";
 
 export async function getInstruments() {
   const { data, error } = await supabase.from("string_life").select();

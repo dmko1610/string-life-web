@@ -1,0 +1,12 @@
+{
+  "Dashboard": {
+    "title": "Dashboard",
+    "emptyState": "No instruments found. Start by adding a new one"
+  },
+  "Instrument": {},
+  "Button": {
+    "add": {
+      "title": "Add instrument"
+    }
+  }
+}

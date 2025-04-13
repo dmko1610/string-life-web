@@ -11,16 +11,22 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
+    "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^7.0.1",
+    "@mui/material-nextjs": "^7.0.2",
     "@supabase/supabase-js": "^2.49.4",
     "next": "15.2.4",
+    "next-intl": "^4.0.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@swc/core": "^1.11.20",
+    "@swc/jest": "^0.2.37",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
