@@ -1,5 +1,4 @@
 import "./globals.css";
-import EmotionRegistry from "./EmotionRegistry";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 
 export default function RootLayout({
