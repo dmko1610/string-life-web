@@ -5,8 +5,13 @@
   },
   "Instrument": {},
   "Button": {
-    "add": {
-      "title": "Add instrument"
-    }
+    "add": "Add instrument",
+    "login": "Log In",
+    "signup": "Sign Up"
+  },
+  "Authentication": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password"
   }
 }
